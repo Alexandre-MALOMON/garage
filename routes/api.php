@@ -4,6 +4,7 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\VoitureController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use League\CommonMark\Environment\Environment;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,5 +29,8 @@ Route::get('voiture',[VoitureController::class,'index']);
 Route::put('voiture/update/{id}',[VoitureController::class,'update']);
 Route::delete('voiture/delete/{id}',[VoitureController::class,'destroy']);
 Route::get('voiture/show/{id}',[VoitureController::class,'show']);
+
+
+
 
 

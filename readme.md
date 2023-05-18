@@ -1,49 +1,28 @@
-## requirement
+Bonjour les amis le projet est déjà sur github
 
+requirement du projet
 PHP 7.4
-Composer 2.0.2
-Laravel 8
+COMPOSER 2.3.0
+NODE 17.9.0
+GIT 2.25.1
 
-## Clone the repository
+Lien du clonage
+HTTPS https://github.com/Alexandre-MALOMON/garage.git
+SSH git@github.com:Alexandre-MALOMON/garage.git
 
-git clone https://git@github.com:Alexandre-MALOMON/kanban_back.git
+Vous devez avoir git installé sur votre PC et configurer
+Pour cloner allez sur le terminal et fait
 
-Switch to the repo folder
+*git clone <le lien https ou le lien ssh pour ceux qui ont configurer le le git avec une clé SSH>
+*faire un cd le dossier du projet
+*faire un composer install
+*ouvrir le projet sur l'editeur et créer un fichier .env
+*copier le contenu du fichier .env.exemple et coller dans le nouveau fichier .env
+*faire un php artisan key:generate
+*créer une base de donnée et mettre le nom de la base de donnée dans la variable d'Environment "DB_DATABASE" du fichier .env
+*faire un php artisan optimize
+*faire un php artisan migrate
+*faire un php artisan serve pour lancer le serveur
 
-cd kanban_back
 
-Install all the dependencies using composer
-
-composer install
-
-Copy the example env file and make the required configuration changes in the .env file
-
-cp .env.example .env
-
-Generate a new application key
-
-php artisan key:generate
-
-php artisan migrate
-
-Start the local development server
-
-php artisan serve
-
-You can now access the server at http://localhost:8000
-
-## Database seeding
-
-Populate the database with seed data with relationships which includes users, articles, comments, tags, favorites and follows. This can help you to quickly start testing the api or couple a frontend and start using it with ready content.
-
-Open the DummyDataSeeder and set the property values as per your requirement
-
-database/seeds/DummyDataSeeder.php
-
-Run the database seeder and you're done
-
-php artisan db:seed
-
-Note : It's recommended to have a clean database before seeding. You can refresh your migrations at any point to clean the database by running the following command
-
-php artisan migrate:refresh
+HAPPY CODING
