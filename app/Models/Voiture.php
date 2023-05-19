@@ -15,7 +15,7 @@ class Voiture extends Model
         'roue',
     ];
 
-    public function voiture(){
+    public function categorie(){
        return $this->belongsTo(Categorie::class,'categorie_id','id');
     }
 }

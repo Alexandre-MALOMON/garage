@@ -32,7 +32,7 @@ class VoitureController extends Controller
 
     public function index()
     {
-        $voiture = Voiture::orderBy('id', 'asc')->with('voiture')->get();
+        $voiture = Voiture::orderBy('id', 'asc')->with('categorie')->get();
         return response([
             'status' => 200,
             'voiture' => $voiture
@@ -76,13 +76,13 @@ class VoitureController extends Controller
         }
     }
 
-    public function show($id)
+    public function show(Voiture $voi,$id)
     {
-        $voiture = Voiture::find($id);
+        $voiture = Voiture::with('categorie')->find($id);
 
         return response([
             'status' => 200,
-            'voit$voiture' => $voiture
+            'voiture' => $voiture
         ]);
     }
 }
