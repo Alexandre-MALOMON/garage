@@ -10,11 +10,13 @@ class CategorieController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|min:4|unique:categories'
+            'name' => 'required|min:4|unique:categories',
+            'description'=> 'required'
         ]);
 
         $categorie = Categorie::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'description'=> $request->description
         ]);
 
         return response([
@@ -50,10 +52,12 @@ class CategorieController extends Controller
         $categorie = Categorie::find($id);
         $this->validate($request, [
             'name' => 'required|min:4',
+            'description'=> 'required'
         ]);
 
         $categorie->update([
-            'name' => $request->name
+            'name' => $request->name,
+            'description' => $request->description,
         ]);
 
         return response([

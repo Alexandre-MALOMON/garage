@@ -16,9 +16,12 @@ class CreateVoituresTable extends Migration
         Schema::create('voitures', function (Blueprint $table) {
             $table->id();
             $table->foreignId('categorie_id');
-            $table->string('name');
-            $table->string('serie');
-            $table->integer('roue');
+            $table->string('photo');
+            $table->foreignId('marque_id');
+            $table->foreignId('model_id');
+            $table->foreignId('annee_id');
+            $table->integer('prix');
+            $table->mediumText('description');
             $table->timestamps();
         });
     }

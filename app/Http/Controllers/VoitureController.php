@@ -11,17 +11,23 @@ class VoitureController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'categorie_id' => 'required',
-            'name' => 'required|unique:voitures',
-            'serie' => 'required',
-            'roue' => 'required|integer'
+            'categorie_id' => 'required|integer',
+            'photo' => 'required|mimes:png,jpg',
+            'marque_id' => 'required',
+            'model_id' => 'required',
+            'annee_id' => 'required',
+            'prix'  => 'required',
+            'description'  => 'required',
         ]);
 
         $voiture = Voiture::create([
             'categorie_id' => $request->categorie_id,
-            'serie' => $request->serie,
-            'name' => $request->name,
-            'roue' => $request->roue,
+            'photo' => $request->photo,
+            'marque_id' => $request->marque_id,
+            'model_id' => $request->model_id,
+            'annee_id' => $request->annee_id,
+            'prix' => $request->prix,
+            'description' => $request->description,
         ]);
 
         return response([
@@ -32,7 +38,7 @@ class VoitureController extends Controller
 
     public function index()
     {
-        $voiture = Voiture::orderBy('id', 'asc')->with('categorie')->get();
+        $voiture = Voiture::orderBy('id', 'asc')->with('categorie','modele','marque','year')->get();
         return response([
             'status' => 200,
             'voiture' => $voiture
@@ -41,20 +47,26 @@ class VoitureController extends Controller
 
     public function update(Request $request,  $id)
     {
-        //dd($request->all());
+
         $voiture = Voiture::find($id);
         $voitureRequest = $this->validate($request, [
-            'categorie_id' => 'required',
-            'name' => 'required',
-            'serie' => 'required',
-            'roue' => 'required|integer'
+            'categorie_id' => 'required|integer',
+            'photo' => 'required|mimes:png,jpg',
+            'marque_id' => 'required',
+            'model_id' => 'required',
+            'annee_id' => 'required',
+            'prix'  => 'required',
+            'description'  => 'required',
         ]);
-
+        // dd($voitureRequest);
         $voitureUpdate = $voiture->update([
-            'categorie_id' =>         $voitureRequest['categorie_id'],
-            'name' =>         $voitureRequest['name'],
-            'serie' =>         $voitureRequest['serie'],
-            'roue' =>         $voitureRequest['roue'],
+            'categorie_id' => $request->categorie_id,
+            'photo' => $request->photo,
+            'marque_id' => $request->marque_id,
+            'model_id' => $request->model_id,
+            'annee_id' => $request->annee_id,
+            'prix' => $request->prix,
+            'description' => $request->description,
         ]);
 
         return response([
@@ -76,7 +88,7 @@ class VoitureController extends Controller
         }
     }
 
-    public function show(Voiture $voi,$id)
+    public function show(Voiture $voi, $id)
     {
         $voiture = Voiture::with('categorie')->find($id);
 
